@@ -18,6 +18,10 @@
 
 .back {
   background-image: url("/gallery.png");
-  background-size: contain;
+  background-size: auto;
   background-repeat: no-repeat;
+
+  @media (min-width: 768px) {
+    background-size: contain;
+  }
 }
