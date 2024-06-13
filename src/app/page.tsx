@@ -3,10 +3,12 @@ import Gallery from "@/components/Gallery";
 import About from "@/components/About";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
+import Navbar from "@/components/Navbar";
 
 export default function Home() {
   return (
-    <div className="bg-neutral-95 0 back">
+    <div className="bg-neutral-95 0 back bg-neutral-950">
+      <Navbar />
       <Hero />
       <section className="text-white py-[8rem] bg-neutral-950">
         <div className="max-w-[1280px] mx-auto">
