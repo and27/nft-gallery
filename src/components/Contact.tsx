@@ -9,9 +9,9 @@ const Contact = () => {
           <div>
             <h3 className="text-2xl font-bold">Contact information</h3>
             <p className="text-lg text-neutral-400">
-              1234 Street Name, City Name, United States
+              1600 Amphitheatre Parkway, Mountain View, CA, United States
             </p>
-            <p className="text-lg text-neutral-400">+123 456 7890</p>
+            <p className="text-lg text-neutral-400">+1 650-253-0000</p>
             <p className="text-lg text-neutral-400">
               <a href="mailto: ab@gmail.com">
                 <span className="text-blue-500"></span>
