@@ -41,13 +41,13 @@ const items: itemsType[] = [
 
 const FeatureCards = () => (
   <section className="text-center pb-[8rem]">
-    <div className="grid grid-cols-4 gap-10 max-w-[1280px] mx-auto p-12 bg-neutral-950/80 rounded-xl backdrop-invert-0">
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 max-w-[1280px] mx-auto p-12 bg-neutral-950/80 rounded-xl backdrop-invert-0">
       {items.map((item) => {
         const Icon = item.icon;
         return (
           <div
             key={item.id}
-            className="rounded-lg flex flex-col gap-4 text-white items-start text-left transition-all cursor-pointer"
+            className="rounded-lg flex flex-col gap-4 text-white items-start text-left transition-all cursor-pointer mb-10 lg:mb-0 "
           >
             <div className="flex gap-5 items-center justify-start">
               <Icon size={"24"} className="text-white" />

@@ -5,7 +5,7 @@ const Contact = () => {
         <h2 className="text-4xl font-bold text-center w-[20rem] mx-auto mb-[7rem]">
           Contact us
         </h2>
-        <div className="grid grid-cols-2 gap-5">
+        <div className="grid md:grid-cols-2 gap-6 p-4">
           <div>
             <h3 className="text-2xl font-bold">Contact information</h3>
             <p className="text-lg text-neutral-400">
@@ -14,7 +14,7 @@ const Contact = () => {
             <p className="text-lg text-neutral-400">+123 456 7890</p>
             <p className="text-lg text-neutral-400">
               <a href="mailto: ab@gmail.com">
-                <span className="text-blue-500">{/* continue */}</span>
+                <span className="text-blue-500"></span>
               </a>
             </p>
           </div>
