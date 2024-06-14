@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { bebasNeue } from "./Hero";
 
 type GalleryType = {
   id: string;
@@ -63,28 +64,37 @@ const galleryItems: GalleryType[] = [
 
 const Gallery = () => {
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 p-4">
-      {galleryItems.map((item) => (
-        <div
-          key={item.id}
-          className={`relative overflow-hidden rounded-lg w-full min-h-64 ${item.span}`}
+    <section className="text-white py-[8rem] bg-neutral-950" id="gallery">
+      <div className="max-w-[1280px] mx-auto">
+        <h2
+          className={`text-4xl md:text-5xl font-bold text-center w-[20rem] mx-auto mb-[7rem] ${bebasNeue.className}`}
         >
-          <Image
-            src={item.image}
-            layout="fill"
-            objectFit="cover"
-            className="rounded-lg hover:scale-105 transition-transform duration-300"
-            alt={item.description}
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-transparent to-black opacity-0 hover:opacity-100 transition-opacity duration-300">
-            <div className="flex flex-col justify-center items-start p-7">
-              <h3 className="text-2xl text-white">{item.title}</h3>
-              <h2 className="text-white">{item.name}</h2>
+          Explore Our NFT Masterpieces
+        </h2>
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 p-4">
+          {galleryItems.map((item) => (
+            <div
+              key={item.id}
+              className={`relative overflow-hidden rounded-lg w-full min-h-64 ${item.span}`}
+            >
+              <Image
+                src={item.image}
+                layout="fill"
+                objectFit="cover"
+                className="rounded-lg hover:scale-105 transition-transform duration-300"
+                alt={item.description}
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-transparent to-black opacity-0 hover:opacity-100 transition-opacity duration-300">
+                <div className="flex flex-col justify-center items-start p-7">
+                  <h3 className="text-2xl text-white">{item.title}</h3>
+                  <h2 className="text-white">{item.name}</h2>
+                </div>
+              </div>
             </div>
-          </div>
+          ))}
         </div>
-      ))}
-    </div>
+      </div>
+    </section>
   );
 };
 
