@@ -18,38 +18,37 @@ const icons: Record<string, IconType> = {
 const items: itemsType[] = [
   {
     id: "1",
-    name: "Exclusive ",
+    name: "Organization",
     description:
-      "Discover exclusive NFT collections created by top artists from around the world. ",
-    icon: "FaPaintBrush",
+      "Arrange your NFTs into personalized collections and access them quickly.",
+    icon: "FaFolderOpen",
   },
   {
     id: "2",
-    name: "Secure ",
+    name: "Visualization",
     description:
-      "Our platform ensures secure and transparent transactions using blockchain technology.",
-    icon: "FaLock",
+      "Enjoy a modern bookshelf view and see the details of each NFT with a single click.",
+    icon: "FaEye",
   },
   {
     id: "3",
-    name: "Community ",
+    name: "Sharing",
     description:
-      "Participate in events, discussions, and collaborations to grow your network.",
-    icon: "FaUser",
+      "Share your collections and discover those of other users in our integrated social network.",
+    icon: "FaShareAlt",
   },
-
   {
     id: "4",
-    name: "User-Friendly ",
+    name: "Security",
     description:
-      "Enjoy a seamless and intuitive user designed to make managing NFTs easy for everyone.",
-    icon: "FaRocket",
+      "Protect your digital assets with our robust security measures.",
+    icon: "FaLock",
   },
 ];
 
 const FeatureCards = () => (
-  <section className="text-center pb-[8rem]">
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 max-w-[1280px] mx-auto p-10 bg-violet-950/80 rounded-xl backdrop-invert-0">
+  <section className="text-center pb-[8rem] -mt-10 relative z-10">
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 max-w-[1280px] mx-auto p-10  rounded-xl bg-violet-950 ">
       {items.map((item) => {
         const iconName = item.icon;
         const Icon = icons[iconName as keyof typeof icons];
@@ -63,7 +62,7 @@ const FeatureCards = () => (
               <h2 className="text-2xl font-bold">{item.name}</h2>
               <div className="border border-white rounded-full p-1"></div>
             </div>
-            <p className="text-lg text-neutral-400">{item.description}</p>
+            <p className="text-lg text-neutral-300">{item.description}</p>
           </div>
         );
       })}
