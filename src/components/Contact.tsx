@@ -53,7 +53,7 @@ const Contact = () => {
               placeholder="Message"
               className="border border-white rounded-md p-3"
             />
-            <button className="px-4 py-2 border border-white text-white rounded-md px-5 text-black">
+            <button className="px-4 py-2 border border-white text-white rounded-md px-5 text-black text-lg hover:bg-white hover:text-black">
               Send message
             </button>
           </form>
