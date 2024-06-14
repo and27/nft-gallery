@@ -1,5 +1,5 @@
-import Spline from "@splinetool/react-spline";
 import { Bebas_Neue } from "next/font/google";
+import Image from "next/image";
 
 export const bebasNeue = Bebas_Neue({
   subsets: ["latin"],
@@ -7,30 +7,45 @@ export const bebasNeue = Bebas_Neue({
 });
 
 const Hero = () => (
-  <main className="min-h-screen grid md:grid-cols-2 gap-10 max-w-[1280px] mx-auto text-white items-center pt-[80px] px-4">
-    <div className="flex flex-col gap-7 items-start justify-center">
-      <h1
-        className={`${bebasNeue.className} text-6xl font-bold leading-snug leading-tight`}
-      >
-        Discover, collect and sell creative NFTs
-      </h1>
-      <p className="text-lg">
-        We provide the best NTF library for you to use in your projects. The
-        best NTF library for you to use in your projects.
-      </p>
-      <div className="flex gap-5 text-lg bg-white p-2 rounded-lg">
-        <input
-          type="text"
-          placeholder="Enter your email"
-          className="p-3 text-black"
-        />
-        <button className="px-4 py-2 bg-violet-950 text-white rounded-md hover:bg-black">
-          Get an invitation
-        </button>
+  <main className="relative back h-screen text-white pt-[80px] px-4">
+    <div className="max-w-[1280px] mx-auto grid grid-cols-1 md:grid-cols-2 items-center h-full">
+      <div className="flex flex-col gap-7 items-start justify-center">
+        <h1
+          className={`${bebasNeue.className} text-6xl font-bold leading-none slide-bottom`}
+        >
+          Discover, Collect, and Manage Your Creative NFTs
+        </h1>
+        <p className="text-lg">
+          Explore, organize, and manage your NFTs effortlessly. Our platform
+          provides you with advanced tools to showcase, sort, and share your
+          digital assets.
+        </p>
+        <div className="flex gap-5 text-lg bg-white p-1 md:p-1.5 rounded-lg">
+          <label htmlFor="contact-email" className="sr-only">
+            Email
+          </label>
+          <input
+            id="contact-email"
+            type="text"
+            placeholder="Enter your email"
+            className="p-3 text-black"
+          />
+          <button className="px-4 py-2 bg-violet-950 text-white rounded-md hover:bg-black">
+            Join now
+          </button>
+        </div>
       </div>
-    </div>
-    <div className="relative">
-      <Spline scene="https://prod.spline.design/MIeBzF1PcIZuuEas/scene.splinecode" />
+      <div className="w-full h-full">
+        <Image
+          src="/lyon3.webp"
+          alt="Hero"
+          width="0"
+          height="0"
+          sizes="100vw"
+          className="w-full md:w-1/2 md:absolute "
+          style={{ insetBlockEnd: "0" }}
+        />
+      </div>
     </div>
   </main>
 );
