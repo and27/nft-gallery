@@ -1,58 +1,61 @@
-import { FaBeer } from "react-icons/fa";
-import { FaBook, FaLock, FaOdnoklassniki, FaUser } from "react-icons/fa6";
+import { FaBookOpen, FaBullseye, FaEye, FaUsers } from "react-icons/fa6";
+import { bebasNeue } from "./Hero";
 
 type aboutItemsType = {
   title: string;
   description: string;
-  icon: React.ComponentType<{ size?: string; className?: string }> | null;
+  icon: React.ComponentType<{ size?: string; className?: string }>;
 };
 
 const aboutItems: aboutItemsType[] = [
   {
-    title: "Exclusive",
+    title: "Our Mission",
     description:
-      "Discover exclusive NFT collections created by top artists from around the world.",
-    icon: FaBook,
+      "To revolutionize the NFT space by providing a user-friendly and secure platform for discovering, collecting, and managing digital assets.",
+    icon: FaBullseye,
   },
   {
-    title: "Secure",
+    title: "Our Vision",
     description:
-      "Our platform ensures secure and transparent transactions using blockchain technology.",
-    icon: FaLock,
+      "To be the leading platform for NFT enthusiasts, fostering a vibrant community where creativity and innovation thrive.",
+    icon: FaEye,
   },
   {
-    title: "Community",
+    title: "Our Story",
     description:
-      "Participate in events, discussions, and collaborations to grow your network.",
-    icon: FaUser,
+      "Founded by a group of passionate digital artists and tech enthusiasts, we aimed to create a space where art and technology intersect seamlessly.",
+    icon: FaBookOpen,
   },
   {
-    title: "User-Friendly",
+    title: "Our Team",
     description:
-      "Enjoy a seamless and intuitive user designed to make managing NFTs easy for everyone.",
-    icon: FaOdnoklassniki,
+      "A diverse team of experts in blockchain, digital art, and user experience dedicated to making NFTs accessible and enjoyable for everyone.",
+    icon: FaUsers,
   },
 ];
+
 const About = () => {
   return (
-    <section className="py-[8rem] bg-neutral-950 text-white px-5 md:px-10 xl:px-[20rem] ">
+    <section
+      className="py-[8rem] bg-neutral-950 text-white px-5 md:px-10 xl:px-[20rem]"
+      id="about"
+    >
       <div className="max-w-[1280px] mx-auto">
-        <h2 className="text-4xl font-bold text-center w-[20rem] mx-auto mb-[7rem]">
+        <h2
+          className={`text-4xl md:text-5xl font-bold mb-[4rem] md:mb-[6rem] ${bebasNeue.className}`}
+        >
           About us
         </h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-7">
-          {aboutItems.map((item, index) => {
-            const Icon = item.icon;
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+          {aboutItems.map(({ icon: Icon, ...item }, index) => {
             return (
               <div
                 key={index}
-                className="flex gap-6 text-white items-center text-left transition-all cursor-pointer p-5 md:"
+                className=" flex flex-col gap-3 text-white text-left transition-all cursor-pointer"
               >
-                <Icon size={"48"} className="text-white" />
-                <div>
-                  <h2 className="text-2xl font-bold">{item.title}</h2>
-                  <p className="text-lg text-neutral-400">{item.description}</p>
-                </div>
+                <Icon className="text-white mb-3 text-3xl md:text-4xl" />
+                <h2 className="text-2xl font-bold">{item.title}</h2>
+                <p className="text-lg text-neutral-400">{item.description}</p>
               </div>
             );
           })}
