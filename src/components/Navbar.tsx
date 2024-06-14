@@ -1,7 +1,6 @@
 "use client";
 
 import Link from "next/link";
-import { usePathname } from "next/navigation";
 import { useState } from "react";
 
 type NavType = {
@@ -30,11 +29,8 @@ const navItems: NavType[] = [
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [activeLink, setActiveLink] = useState("");
   const isMobile = typeof window !== "undefined" && window.innerWidth < 768;
-  const pathname = usePathname();
-  const isActive = (href: string) => {
-    return pathname === href ? "text-violet-500" : "";
-  };
 
   const openMenu = () => {
     setIsOpen(!isOpen);
@@ -42,9 +38,9 @@ const Navbar = () => {
 
   return (
     <>
-      <nav className="relative">
-        <div
-          className={`flex flex-col md:flex-row justify-between items-center py-4 px-8  bg-neutral-950/70 md:bg-neutral-950/10 backdrop-blur-lg backdrop-filter fixed w-full z-20
+      <header className="relative">
+        <nav
+          className={`flex flex-col md:flex-row justify-between items-center py-4 px-8 bg-neutral-950/70 md:bg-neutral-950/10 backdrop-blur-lg backdrop-filter fixed w-full z-20
           ${isMobile ? (isOpen ? "top-0 left-0 h-screen" : "hidden") : ""}
             `}
         >
@@ -53,7 +49,13 @@ const Navbar = () => {
           </Link>
           <ul className="flex flex-col md:flex-row py-5 gap-8 text-white">
             {navItems.map((item) => (
-              <li key={item.name}>
+              <li
+                key={item.name}
+                className={`${
+                  activeLink === item.name ? "border-b-2 border-white" : ""
+                } hover:border-b border-white transition-all`}
+                onClick={() => setActiveLink(item.name)}
+              >
                 <Link href={item.link}>{item.name}</Link>
               </li>
             ))}
@@ -65,7 +67,7 @@ const Navbar = () => {
           >
             Contact us
           </Link>
-        </div>
+        </nav>
         <button
           className="md:hidden absolute top-4 right-4 z-50"
           aria-label="Open Menu"
@@ -104,7 +106,7 @@ const Navbar = () => {
             </svg>
           )}
         </button>
-      </nav>
+      </header>
     </>
   );
 };
