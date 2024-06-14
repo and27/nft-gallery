@@ -7,7 +7,7 @@ export const bebasNeue = Bebas_Neue({
 });
 
 const Hero = () => (
-  <main className="relative back md:h-screen text-white pt-[80px] px-4">
+  <main className="relative back md:h-screen text-white pt-[80px] md:pt-0 px-4">
     <div className="max-w-[1280px] mx-auto grid grid-cols-1 md:grid-cols-2 items-center h-full">
       <div className="flex flex-col gap-7 items-start justify-center">
         <h1
@@ -37,8 +37,8 @@ const Hero = () => (
       </div>
       <div className="w-full h-full">
         <Image
-          src="/lyon3.webp"
-          alt="Hero"
+          src="/lyonHero.webp"
+          alt=""
           width="0"
           height="0"
           sizes="100vw"
