@@ -18,7 +18,7 @@ const Footer = () => {
           <FaInstagram size={20} />
         </Link>
       </div>
-      <p className="text-sm">
+      <p className="text-sm text-neutral-300">
         &copy; NFT Gallery 2021-2025 All rights reserved
       </p>
     </footer>
