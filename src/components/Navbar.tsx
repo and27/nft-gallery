@@ -1,53 +1,48 @@
 "use client";
 
+import { navItems } from "@/app/data/navigation";
 import Link from "next/link";
-import { useState } from "react";
-
-type NavType = {
-  name: string;
-  link: string;
-};
-
-const navItems: NavType[] = [
-  {
-    name: "Home",
-    link: "/",
-  },
-  {
-    name: "Gallery",
-    link: "#gallery",
-  },
-  {
-    name: "About",
-    link: "#about",
-  },
-  {
-    name: "Contact",
-    link: "#contact",
-  },
-];
+import { useEffect, useState } from "react";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [activeLink, setActiveLink] = useState("");
-  const isMobile = typeof window !== "undefined" && window.innerWidth < 768;
+  const [isMobile, setIsMobile] = useState<boolean | null>(null);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   const openMenu = () => {
     setIsOpen(!isOpen);
   };
 
+  if (isMobile === null) return null;
+
   return (
     <>
       <header className="relative">
         <nav
-          className={`flex flex-col md:flex-row justify-between items-center py-4 px-8 bg-neutral-950/70 md:bg-neutral-950/10 backdrop-blur-lg backdrop-filter fixed w-full z-20
-          ${isMobile ? (isOpen ? "top-0 left-0 h-screen" : "hidden") : ""}
-            `}
+          className={`flex flex-col md:flex-row justify-center md:justify-start items-center bg-neutral-950/80 md:bg-neutral-950/10 backdrop-blur-lg backdrop-filter absolute md:fixed w-full z-20 
+            ${isOpen && isMobile ? "top-0 left-0 h-screen" : ""}`}
         >
-          <Link href="#" className="text-white font-bold text-2xl">
+          <Link
+            href="#"
+            className="text-white font-bold text-2xl absolute top-4 left-4 md:static z-50 md:inset-auto px-6"
+          >
             NFT
           </Link>
-          <ul className="flex flex-col md:flex-row py-5 gap-8 text-white">
+          <ul
+            className={`flex flex-col md:flex-row py-5 gap-8 text-white ${
+              isMobile && !isOpen ? "hidden" : ""
+            } `}
+          >
             {navItems.map((item) => (
               <li
                 key={item.name}
@@ -62,7 +57,7 @@ const Navbar = () => {
           </ul>
           <Link
             href="#contact"
-            className="px-4 py-2 border border-white text-white rounded-md hover:bg-white hover:text-black"
+            className="px-4 py-2 border border-white text-white rounded-md hover:bg-white hover:text-black hidden md:block ml-auto mr-6"
             onClick={openMenu}
           >
             Contact us
