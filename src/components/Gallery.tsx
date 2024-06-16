@@ -1,5 +1,9 @@
+"use client";
+
+import { motion, useAnimation, useInView } from "framer-motion";
 import Image from "next/image";
 import { bebasNeue } from "./Hero";
+import { use, useEffect, useRef } from "react";
 
 type GalleryType = {
   id: string;
@@ -63,36 +67,74 @@ const galleryItems: GalleryType[] = [
 ];
 
 const Gallery = () => {
+  const ref = useRef(null);
+  const isInView = useInView(ref);
+  const controls = useAnimation();
+
+  useEffect(() => {
+    if (isInView) {
+      controls.start("show");
+    }
+  }, [controls, isInView]);
+
+  const galleryContainer = {
+    hidden: { opacity: 0 },
+    show: {
+      opacity: 1,
+      transition: {
+        duration: 2,
+        delay: 1,
+        staggerChildren: 0.3,
+      },
+    },
+  };
+
+  const galleryItem = {
+    hidden: { opacity: 0, y: 20 },
+    show: { opacity: 1, y: 0, transition: { duration: 0.6 } },
+  };
+
   return (
     <section className="text-white py-[8rem] bg-neutral-950" id="gallery">
-      <div className="max-w-[1280px] mx-auto">
-        <h2
+      <div className="max-w-[1280px] mx-auto" ref={ref}>
+        <motion.h2
+          style={{
+            transform: isInView ? "none" : "translateX(-200px)",
+            opacity: isInView ? 1 : 0,
+            transition: "all 0.9s cubic-bezier(0.17, 0.55, 0.55, 1) 0.5s",
+          }}
           className={`text-4xl md:text-5xl font-bold text-center w-[20rem] mx-auto mb-[7rem] ${bebasNeue.className}`}
         >
           Explore Our NFT Masterpieces
-        </h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 p-4">
+        </motion.h2>
+        <motion.div
+          className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 p-4"
+          variants={galleryContainer}
+          initial="hidden"
+          animate={controls}
+        >
           {galleryItems.map((item) => (
-            <div
+            <motion.div
               key={item.id}
-              className={`relative overflow-hidden rounded-lg w-full min-h-64 ${item.span}`}
+              variants={galleryItem}
+              className={`relative overflow-hidden rounded-lg w-full min-h-64 ${item.span} group`}
             >
               <Image
                 src={item.image}
                 layout="fill"
                 objectFit="cover"
-                className="rounded-lg hover:scale-105 transition-transform duration-300"
+                className="rounded-lg transition-transform duration-500 transform group-hover:scale-110"
                 alt={item.description}
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-transparent to-black opacity-0 hover:opacity-100 transition-opacity duration-300">
+              <div className="relative w-full h-full bg-gradient-to-t from-transparent to-black opacity-0 transition-opacity duration-500 group-hover:opacity-100">
                 <div className="flex flex-col justify-center items-start p-7">
                   <h3 className="text-2xl text-white">{item.title}</h3>
                   <h2 className="text-white">{item.name}</h2>
                 </div>
               </div>
-            </div>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   );
