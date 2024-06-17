@@ -24,6 +24,10 @@ html {
   scroll-behavior: smooth;
 }
 
+.no-scroll {
+  overflow: hidden;
+}
+
 .back {
   background-image: url("/backgroundNeon.webp");
   background-size: auto;

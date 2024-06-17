@@ -23,18 +23,30 @@ const Navbar = () => {
     setIsOpen(!isOpen);
   };
 
+  useEffect(() => {
+    if (isOpen && isMobile) {
+      document.body.classList.add("no-scroll");
+    } else {
+      document.body.classList.remove("no-scroll");
+    }
+
+    return () => {
+      document.body.classList.remove("no-scroll");
+    };
+  }, [isOpen, isMobile]);
+
   if (isMobile === null) return null;
 
   return (
     <>
       <header className="relative">
         <nav
-          className={`flex flex-col md:flex-row justify-center md:justify-start items-center bg-neutral-950/80 md:bg-neutral-950/10 backdrop-blur-lg backdrop-filter absolute md:fixed w-full z-20 
+          className={`flex flex-col md:flex-row justify-center md:justify-start items-center bg-neutral-950/80 md:bg-neutral-950/10 backdrop-blur-lg backdrop-filter absolute fixed w-full z-20 
             ${isOpen && isMobile ? "top-0 left-0 h-screen" : ""}`}
         >
           <Link
             href="#"
-            className="text-white font-bold text-2xl absolute top-4 left-4 md:static z-50 md:inset-auto px-6"
+            className="text-white font-bold text-2xl absolute top-4 left-4 md:static z-50 md:inset-auto  md:px-6"
           >
             NFT
           </Link>
