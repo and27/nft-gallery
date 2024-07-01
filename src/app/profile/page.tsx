@@ -1,110 +1,101 @@
 "use client";
-
-import React, { useEffect, useState } from "react";
-import { useInView } from "react-intersection-observer";
+import { useEffect, useState } from "react";
+import { bebasNeue } from "@/components/Hero";
+import { useRouter } from "next/navigation";
+import { getNFTsfromAccount } from "../lib/opensea";
 import web3 from "../../lib/web3";
 
+const getAccount = async () => {
+  const accounts = await web3.eth.getAccounts();
+  const account = accounts[0];
+  const providerInfo = web3.currentProvider;
+  let provider = "Unknown";
+
+  if (providerInfo && (providerInfo as any).isMetaMask) {
+    provider = "MetaMask";
+  } else if (providerInfo) {
+    provider = providerInfo.constructor.name;
+  } else {
+    provider = "Unknown";
+  }
+
+  return [account, provider];
+};
+
+const getNFTs = async (account: string) => {
+  const NFTs = await getNFTsfromAccount(account);
+  return NFTs;
+};
+
 const Account: React.FC = () => {
-  const [account, setAccount] = useState<string>("");
-  const [provider, setProvider] = useState<string>("");
-  const [nfts, setNfts] = useState<any[]>([]);
-  const [nextPage, setNextPage] = useState<string | null>(null);
-  const { ref, inView } = useInView({ threshold: 0.5 });
+  const [account, setAccount] = useState<string>(
+    "0xCF00eC2B327BCfA2bee2D8A5Aee0A7671d08A283"
+  );
+  const [provider, setProvider] = useState<string | null>(null);
+  const [NFTs, setNFTs] = useState<any[]>([]);
+  const router = useRouter();
 
   useEffect(() => {
-    const getAccount = async () => {
-      try {
-        const accounts = await web3.eth.getAccounts();
-        setAccount(accounts[0] || "");
-
-        const providerInfo = web3.currentProvider;
-        if (providerInfo && (providerInfo as any).isMetaMask) {
-          setProvider("MetaMask");
-        } else if (providerInfo) {
-          setProvider(providerInfo.constructor.name);
-        } else {
-          setProvider("N/A");
-        }
-      } catch (error) {
-        console.error("Error fetching accounts:", error);
-      }
+    const fetchAccount = async () => {
+      const [account, provider] = await getAccount();
+      setAccount(account);
+      setProvider(provider);
     };
 
-    getAccount();
+    const fetchNFTs = async (account: string) => {
+      if (!account) return;
+      const NFTs = await getNFTs(account);
+      setNFTs(NFTs.nfts);
+    };
+    fetchAccount();
+    fetchNFTs(account);
   }, []);
 
-  const getNFTs = async () => {
-    try {
-      const options = {
-        method: "GET",
-        headers: {
-          accept: "application/json",
-          "x-api-key": "c066b26a07ef42789b49049adf1ea2fa",
-        },
-      };
-
-      const url = nextPage
-        ? `https://api.opensea.io/api/v2/collections?chain=ethereum&limit=8&next=${nextPage}`
-        : "https://api.opensea.io/api/v2/collections?chain=ethereum&limit=8";
-
-      const res = await fetch(url, options);
-      const collections = await res.json();
-      setNfts((prev) => [...prev, ...collections.collections]);
-      setNextPage(collections.next);
-    } catch (error) {
-      console.error("Error fetching NFTs:", error);
-    }
-  };
-
-  useEffect(() => {
-    if (inView) {
-      getNFTs();
-    }
-
-    console.log(inView, nextPage);
-  }, [inView]);
-
-  const Spiner = () => (
-    <div className="flex justify-center items-center py-5">
-      <div className="animate-spin rounded-full h-10 w-10 border-t-2 border-b-2 border-indigo-500"></div>
-    </div>
-  );
-
   return (
-    <div className="bg-neutral-200">
-      <div className="max-w-6xl mx-auto bg-neutral-100 p-10">
-        <h1 className="text-3xl font-bold">Welcome</h1>
-        <div className="mt-10">
-          <h2 className="text-xl font-semibold mb-5">Account info</h2>
-          <div>Cuenta conectada: {account}</div>
-          <div>Proveedor actual: {provider}</div>
+    <div className="bg-neutral-200 min-h-screen">
+      <div className="max-w-6xl mx-auto bg-neutral-100 p-10 ">
+        <div className="flex items-center w-full  mb-8 justify-between">
+          <h1 className={`${bebasNeue.className} text-4xl font-bold`}>
+            Welcome
+          </h1>
+          <button
+            className="bg-indigo-600 text-white px-4 py-2 rounded-lg"
+            onClick={() => router.push("/surf")}
+          >
+            Browse NFTs
+          </button>
         </div>
-        <div className="mt-10">
-          <h2 className="text-xl font-semibold mb-5">Your NFTS</h2>
+        <div className="flex flex-col gap-2 mb-8">
+          <h2 className="text-neutral-500 font-semibold">Account info</h2>
+          <div>Account owner: {account}</div>
+          <div>Provider: {provider}</div>
+        </div>
+        <h2 className="text-neutral-500 font-semibold">My NFTs</h2>
+        {NFTs.length === 0 ? (
+          <div className="flex justify-center items-center py-5">
+            <div className="animate-spin rounded-full h-10 w-10 border-t-2 border-b-2 border-indigo-500"></div>
+          </div>
+        ) : (
           <div className="grid grid-cols-4 gap-x-4 gap-y-10 justify-center">
-            {nfts.map((nft) => (
-              <div key={nft.id} className="flex flex-col gap-2">
-                <div className="aspect-square w-full">
+            {NFTs.map((NFT) => (
+              <div
+                key={NFT.id}
+                className="flex flex-col gap-2 w-full aspect-square overflow-hidden rounded-lg relative"
+              >
+                <div className="">
                   <img
-                    src={nft.image_url}
-                    alt={nft.name}
-                    className="w-full h-full object-cover rounded-lg bg-neutral-300"
+                    src={NFT.image_url}
+                    alt={NFT.name}
+                    className="object-cover"
                   />
                 </div>
-                <p>{nft.name}</p>
-                <p className="text-sm text-neutral-600 line-clamp-1">
-                  {nft.owner}
-                </p>
-                <button className="bg-indigo-600 text-white w-full py-2 rounded-lg">
-                  View
-                </button>
+                <div className="text-center absolute top-0 w-full h-full bg-gradient-to-t from-transparent to-black ">
+                  <p className="text-white pt-4">{NFT.name}</p>
+                </div>
               </div>
             ))}
           </div>
-          <div ref={ref} className="mb-10">
-            {inView ? <Spiner /> : null}
-          </div>
-        </div>
+        )}
       </div>
     </div>
   );
