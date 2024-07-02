@@ -52,8 +52,8 @@ const Account: React.FC = () => {
   }, []);
 
   return (
-    <div className="bg-neutral-200 min-h-screen">
-      <div className="max-w-6xl mx-auto bg-neutral-100 p-10 ">
+    <div className="bg-neutral-950 min-h-screen pt-10">
+      <div className="max-w-6xl mx-auto bg-neutral-100 p-16 mt-9 ">
         <div className="flex items-center w-full  mb-8 justify-between">
           <h1 className={`${bebasNeue.className} text-4xl font-bold`}>
             Welcome
@@ -62,15 +62,19 @@ const Account: React.FC = () => {
             className="bg-indigo-600 text-white px-4 py-2 rounded-lg"
             onClick={() => router.push("/surf")}
           >
-            Browse NFTs
+            Mint NFT
           </button>
         </div>
         <div className="flex flex-col gap-2 mb-8">
-          <h2 className="text-neutral-500 font-semibold">Account info</h2>
           <div>Account owner: {account}</div>
           <div>Provider: {provider}</div>
         </div>
-        <h2 className="text-neutral-500 font-semibold">My NFTs</h2>
+
+        <h2
+          className={`${bebasNeue.className} text-neutral-500 font-semibold text-3xl mb-4`}
+        >
+          My NFTs
+        </h2>
         {NFTs.length === 0 ? (
           <div className="flex justify-center items-center py-5">
             <div className="animate-spin rounded-full h-10 w-10 border-t-2 border-b-2 border-indigo-500"></div>
