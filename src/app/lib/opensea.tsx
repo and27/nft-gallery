@@ -6,30 +6,43 @@ const options = {
   },
 };
 
-const getNFTsFromCollection = async (owner: string) => {
+const getNFTsfromAccount = async (address: string) => {
   try {
     const res = await fetch(
-      `https://api.opensea.io/api/v2/chain/ethereum/account/${owner}/nfts?limit=10`,
+      `https://api.opensea.io/api/v2/chain/ethereum/account/${address}/nfts`,
       options
     );
-    const nfts = await res.json();
-    return nfts;
+    const account = await res.json();
+    return account;
   } catch (error) {
-    console.error("Error fetching NFTs:", error);
+    console.error("Error fetching Account:", error);
   }
 };
 
-const getNFTsfromAccount = async (account: string) => {
+const getNFTsByCollection = async (slug: string) => {
   try {
     const res = await fetch(
-      `https://api.opensea.io/api/v2/chain/ethereum/account/${account}/nfts`,
+      `https://api.opensea.io/api/v2/collection/${slug}/nfts`,
       options
     );
-    const nfts = await res.json();
-    return nfts;
+    const collection = await res.json();
+    return collection;
   } catch (error) {
-    console.error("Error fetching NFTs:", error);
+    console.error("Error fetching Collection:", error);
   }
 };
 
-export { getNFTsFromCollection, getNFTsfromAccount };
+const getCollectionBySlug = async (slug: string) => {
+  try {
+    const res = await fetch(
+      `https://api.opensea.io/api/v2/collections/${slug}`,
+      options
+    );
+    const collection = await res.json();
+    return collection;
+  } catch (error) {
+    console.error("Error fetching Collection:", error);
+  }
+};
+
+export { getNFTsByCollection, getNFTsfromAccount, getCollectionBySlug };

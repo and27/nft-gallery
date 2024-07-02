@@ -1,8 +1,8 @@
 "use client";
 
-import { navItems } from "../data/navigation";
-import Link from "next/link";
 import { useEffect, useState } from "react";
+import Link from "next/link";
+import { navItems } from "../data/navigation";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -41,12 +41,12 @@ const Navbar = () => {
     <>
       <header className="relative">
         <nav
-          className={`flex flex-col md:flex-row justify-center md:justify-start items-center bg-neutral-950/80 md:bg-neutral-950/10 backdrop-blur-lg backdrop-filter absolute fixed w-full z-20 
+          className={`flex flex-col md:flex-row justify-center md:justify-between px-16 items-center bg-neutral-950/80 md:bg-neutral-950/10 backdrop-blur-lg backdrop-filter absolute fixed w-full z-20 
             ${isOpen && isMobile ? "top-0 left-0 h-screen" : ""}`}
         >
           <Link
             href="#"
-            className="text-white font-bold text-2xl absolute top-4 left-4 md:static z-50 md:inset-auto  md:px-6"
+            className="text-white font-bold text-2xl absolute top-4 left-4 md:static z-50 md:inset-auto"
           >
             NFT
           </Link>
@@ -61,19 +61,11 @@ const Navbar = () => {
                 className={`${
                   activeLink === item.name ? "border-b-2 border-white" : ""
                 } hover:border-b border-white transition-all`}
-                onClick={() => setActiveLink(item.name)}
               >
                 <Link href={item.link}>{item.name}</Link>
               </li>
             ))}
           </ul>
-          <Link
-            href="#contact"
-            className="px-4 py-2 border border-white text-white rounded-md hover:bg-white hover:text-black hidden md:block ml-auto mr-6"
-            onClick={openMenu}
-          >
-            Contact us
-          </Link>
         </nav>
         <button
           className="md:hidden absolute top-4 right-4 z-50"
