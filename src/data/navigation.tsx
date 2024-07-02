@@ -9,15 +9,11 @@ export const navItems: NavType[] = [
     link: "/",
   },
   {
-    name: "Gallery",
-    link: "#gallery",
+    name: "NFTs Gallery",
+    link: "/surf",
   },
   {
     name: "About",
     link: "#about",
-  },
-  {
-    name: "Contact",
-    link: "#contact",
   },
 ];
