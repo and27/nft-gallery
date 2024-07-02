@@ -1,6 +1,7 @@
 "use client";
 
 import { bebasNeue } from "@/components/Hero";
+import ImageWithContent from "@/components/ImageWithContent";
 import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import { useInView } from "react-intersection-observer";
@@ -40,6 +41,10 @@ const Account: React.FC = () => {
     }
   }, [inView]);
 
+  const navigateToCollection = (collection: string) => {
+    router.push(`/surf/${collection}`);
+  };
+
   const Spiner = () => (
     <div className="flex justify-center items-center py-5">
       <div className="animate-spin rounded-full h-10 w-10 border-t-2 border-b-2 border-indigo-500"></div>
@@ -47,41 +52,38 @@ const Account: React.FC = () => {
   );
 
   return (
-    <div className="bg-neutral-200">
-      <div className="max-w-6xl mx-auto bg-neutral-100 p-10">
-        <h1 className={`${bebasNeue.className}  text-3xl font-bold`}>
-          Collections
-        </h1>
-        <div className="mt-10">
-          <div className="grid grid-cols-4 gap-x-4 gap-y-10 justify-center">
-            {collections.map((collection) => (
+    <>
+      <h1 className={`${bebasNeue.className} text-3xl font-bold mb-2`}>
+        Collections
+      </h1>
+      <p>
+        Explore the ultimate platform for NFT book lovers! Discover, organize,
+        and showcase your exclusive NFT bookshelf collection.
+      </p>
+      <div className="mt-10">
+        <div className="grid grid-cols-4 gap-x-4 gap-y-10 justify-center">
+          {collections.map((collection) => {
+            const image =
+              collection.image_url !== ""
+                ? collection.image_url
+                : "/lyonHero.webp";
+            return (
               <div key={collection.id} className="flex flex-col gap-2 relative">
-                <div className="aspect-square w-full">
-                  <img
-                    src={collection.image_url}
-                    alt={collection.name}
-                    className="w-full h-full object-cover rounded-lg bg-neutral-300"
-                  />
-                </div>
-                <div className="absolute bottom-0 w-full text-center">
-                  <p>{collection.name}</p>
-
-                  <button
-                    className="bg-indigo-600 text-white w-full py-2 rounded-lg m-2"
-                    onClick={() => router.push(`/surf/${collection.owner}`)}
-                  >
-                    View
-                  </button>
-                </div>
+                <ImageWithContent
+                  image={image}
+                  onClick={() => navigateToCollection(collection.collection)}
+                >
+                  <p className="text-white mt-4">{collection.name}</p>
+                </ImageWithContent>
               </div>
-            ))}
-          </div>
-          <div ref={ref} className="mb-10">
-            {inView ? <Spiner /> : null}
-          </div>
+            );
+          })}
+        </div>
+        <div ref={ref} className="mb-10">
+          {inView ? <Spiner /> : null}
         </div>
       </div>
-    </div>
+    </>
   );
 };
 
