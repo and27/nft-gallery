@@ -1,19 +1,19 @@
 # NFT Gallery
 
-![Project Status](https://img.shields.io/badge/Project%20Status-Development-yellow)
+[![Project Status](https://img.shields.io/badge/Project%20Status-Development-yellow)](https://shields.io/)
 
-![Captura de Pantalla del Proyecto](public/screenshot.png) 
+![NFT Gallery Screenshot](public/screenshot.png)
 
-NFT Gallery es una aplicación web construida con Next.js que proporciona una plataforma para exhibir y explorar NFTs. Permite a los usuarios organizar sus NFTs en colecciones personalizadas, visualizarlos en un formato de "estantería" moderno, compartirlos en una red social integrada y proteger sus activos digitales con robustas medidas de seguridad.
+NFT Gallery is a web application built with Next.js that provides a platform for showcasing and exploring NFTs. It allows users to organize their NFTs into custom collections, view them in a modern "bookshelf" format, share them on an integrated social network, and protect their digital assets with robust security measures.
 
-## Características Principales
+## Key Features
 
-*   **Organización:** Organiza tus NFTs en colecciones personalizadas y accede a ellos rápidamente.
-*   **Visualización:** Disfruta de una vista moderna y ve los detalles de cada NFT con un solo clic.
-*   **Compartir:** Comparte tus colecciones y descubre las de otros usuarios en nuestra red social integrada.
-*   **Seguridad:** Protege tus activos digitales con nuestras robustas medidas de seguridad.
+*   **Organization:** Organize your NFTs into custom collections and access them quickly.
+*   **Visualization:** Enjoy a modern view and see the details of each NFT with a single click.
+*   **Sharing:** Share your collections and discover those of other users on our integrated social network.
+*   **Security:** Protect your digital assets with our robust security measures.
 
-## Tecnologías Utilizadas
+## Technologies Used
 
 *   Next.js
 *   React
@@ -25,36 +25,37 @@ NFT Gallery es una aplicación web construida con Next.js que proporciona una pl
 *   Web3.js
 *   Tailwind CSS
 
-## Instalación
+## Installation
 
-Para ejecutar este proyecto localmente, sigue estos pasos:
+To run this project locally, follow these steps:
 
-1.  **Clona el repositorio:**
+1.  **Clone the repository:**
 
     ```bash
     git clone [https://github.com/and27/nft-gallery](https://github.com/and27/nft-gallery)
     ```
 
-2.  **Navega al directorio del proyecto:**
+2.  **Navigate to the project directory:**
 
     ```bash
-    cd ntf-gallery
+    cd nft-gallery
     ```
 
-3.  **Instala las dependencias:**
+3.  **Install the dependencies:**
 
     ```bash
     npm install
     ```
 
-## Uso
+## Usage
 
-Para iniciar el servidor de desarrollo:
+To start the development server:
 
 ```bash
 npm run dev
 ```
-Abre http://localhost:3000 en tu navegador.
+Open http://localhost:3000 in your browser.
+
 
 ## Licencia
 
