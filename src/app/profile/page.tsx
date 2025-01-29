@@ -2,8 +2,8 @@
 import { useEffect, useState } from "react";
 import { bebasNeue } from "@/components/Hero";
 import { useRouter } from "next/navigation";
-import { getNFTsfromAccount } from "../../lib/opensea";
 import web3 from "../../lib/web3";
+import { getNFTsfromAccount } from "@/lib/opensea";
 
 const getAccount = async () => {
   const accounts = await web3.eth.getAccounts();

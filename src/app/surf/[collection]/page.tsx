@@ -1,5 +1,5 @@
-import { getCollectionBySlug, getNFTsByCollection } from "@/lib/opensea";
 import { bebasNeue } from "@/components/Hero";
+import { getCollectionBySlug, getNFTsByCollection } from "@/lib/opensea";
 import Image from "next/image";
 
 export default async function Page({
