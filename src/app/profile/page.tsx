@@ -2,7 +2,7 @@
 import { useEffect, useState } from "react";
 import { bebasNeue } from "@/components/Hero";
 import { useRouter } from "next/navigation";
-import { getNFTsfromAccount } from "../lib/opensea";
+import { getNFTsfromAccount } from "../../lib/opensea";
 import web3 from "../../lib/web3";
 
 const getAccount = async () => {
@@ -60,7 +60,7 @@ const Account: React.FC = () => {
           </h1>
           <button
             className="bg-indigo-600 text-white px-4 py-2 rounded-lg"
-            onClick={() => router.push("/surf")}
+            onClick={() => router.push("/mint")}
           >
             Mint NFT
           </button>

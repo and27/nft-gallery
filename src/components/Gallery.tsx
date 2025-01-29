@@ -126,12 +126,14 @@ const Gallery = () => {
                 className="rounded-lg transition-transform duration-500 transform group-hover:scale-110"
                 alt={item.description}
               />
-              <div className="relative w-full h-full bg-gradient-to-t from-transparent to-black opacity-0 transition-opacity duration-500 group-hover:opacity-100">
-                <div className="flex flex-col justify-center items-start p-7">
-                  <h3 className="text-2xl text-white">{item.title}</h3>
-                  <h2 className="text-white">{item.name}</h2>
+              <button onClick={() => handleImageLoad}>
+                <div className="relative w-full h-full bg-gradient-to-t from-transparent to-black opacity-0 transition-opacity duration-500 group-hover:opacity-100">
+                  <div className="flex flex-col justify-center items-start p-7">
+                    <h3 className="text-2xl text-white">{item.title}</h3>
+                    <h2 className="text-white">{item.name}</h2>
+                  </div>
                 </div>
-              </div>
+              </button>
             </motion.div>
           ))}
         </motion.div>

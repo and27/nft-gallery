@@ -1,4 +1,4 @@
-import { getCollectionBySlug, getNFTsByCollection } from "@/app/lib/opensea";
+import { getCollectionBySlug, getNFTsByCollection } from "@/lib/opensea";
 import { bebasNeue } from "@/components/Hero";
 import Image from "next/image";
 
