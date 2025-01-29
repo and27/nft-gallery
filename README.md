@@ -1,36 +1,62 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# NFT Gallery
 
-## Getting Started
+[![Project Status](https://img.shields.io/badge/Project%20Status-Development-yellow)](https://shields.io/)
 
-First, run the development server:
+![NFT Gallery Screenshot](public/screenshot.png)
+
+NFT Gallery is a web application built with Next.js that provides a platform for showcasing and exploring NFTs. It allows users to organize their NFTs into custom collections, view them in a modern "bookshelf" format, share them on an integrated social network, and protect their digital assets with robust security measures.
+
+## Key Features
+
+*   **Organization:** Organize your NFTs into custom collections and access them quickly.
+*   **Visualization:** Enjoy a modern view and see the details of each NFT with a single click.
+*   **Sharing:** Share your collections and discover those of other users on our integrated social network.
+*   **Security:** Protect your digital assets with our robust security measures.
+
+## Technologies Used
+
+*   Next.js
+*   React
+*   TypeScript
+*   Framer Motion
+*   React Hook Form
+*   React Icons
+*   React Intersection Observer
+*   Web3.js
+*   Tailwind CSS
+
+## Installation
+
+To run this project locally, follow these steps:
+
+1.  **Clone the repository:**
+
+    ```bash
+    git clone [https://github.com/and27/nft-gallery](https://github.com/and27/nft-gallery)
+    ```
+
+2.  **Navigate to the project directory:**
+
+    ```bash
+    cd nft-gallery
+    ```
+
+3.  **Install the dependencies:**
+
+    ```bash
+    npm install
+    ```
+
+## Usage
+
+To start the development server:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
+Open http://localhost:3000 in your browser.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Licencia
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+This project is under the MIT License. See the [LICENSE](LICENSE) file for details.
