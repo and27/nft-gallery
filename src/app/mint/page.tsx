@@ -1,15 +1,12 @@
 "use client";
+import { useState } from "react";
 import MintForm from "@/components/MintForm";
-import { mintNFT } from "@/lib/web3";
-import React, { useState } from "react";
+import { mintNFT } from "@/lib/contractMethods";
 
 const MintNFTFPage = () => {
-  const [recipient, setRecipient] = useState("");
-  const [tokenURI, setTokenURI] = useState("");
   const [status, setStatus] = useState("");
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
+  const handleMint = async (recipient: string, tokenURI: string) => {
     try {
       setStatus("Acuñando NFT...");
       const tx = await mintNFT(recipient, tokenURI);
@@ -26,20 +23,14 @@ const MintNFTFPage = () => {
 
   return (
     <div className="bg-neutral-950 min-h-screen pt-10">
-      <div className="max-w-6xl mx-auto bg-neutral-100 p-16 mt-9 ">
+      <section className="max-w-6xl mx-auto bg-neutral-100 p-16 mt-9 ">
         <div className="flex items-center w-full mb-8 justify-center">
           <h1 className={`text-4xl font-bold text-center`}>Mint NFT</h1>
         </div>
-        <h1 className="text-center">Acuñar un Nuevo NFT</h1>
-        <MintForm
-          handleSubmit={handleSubmit}
-          recipient={recipient}
-          setRecipient={setRecipient}
-          tokenURI={tokenURI}
-          setTokenURI={setTokenURI}
-        />
+        <p className="text-center">Acuñar un Nuevo NFT</p>
+        <MintForm handleMint={handleMint} />
         {status && <p>{status}</p>}
-      </div>
+      </section>
     </div>
   );
 };
