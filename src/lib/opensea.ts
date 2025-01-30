@@ -1,6 +1,13 @@
 require("dotenv").config();
+
 const KEY = process.env.NEXT_PUBLIC_OPEN_SEA_KEY || "";
-const BASE_URL = "https://api.opensea.io/api/v2";
+const mode = "testnet"; // testnet or mainnet
+const network = mode === "testnet" ? "sepolia" : "ethereum";
+const BASE_URL =
+  mode === "testnet"
+    ? "https://testnets-api.opensea.io/api/v1"
+    : "https://api.opensea.io/api/v2";
+("https://testnets-api.opensea.io/api/v1");
 
 const options = {
   method: "GET",
@@ -22,7 +29,7 @@ const fetchData = async (endpoint: string) => {
 };
 
 const getNFTsfromAccount = async (address: string) => {
-  const res = await fetchData(`chain/ethereum/account/${address}/nfts`);
+  const res = await fetchData(`chain/${network}/account/${address}/nfts`);
   return res;
 };
 

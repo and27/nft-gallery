@@ -2,8 +2,6 @@
 require("@nomiclabs/hardhat-ethers");
 require("dotenv").config();
 
-console.log(process.env.REACT_APP_INFURA_KEY);
-console.log(process.env.PRIVATE_KEY);
 module.exports = {
   solidity: "0.8.24",
   networks: {
