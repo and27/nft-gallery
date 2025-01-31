@@ -48,8 +48,8 @@ const Account: React.FC = () => {
           <div>Account owner: {account}</div>
           <div>Provider: {provider}</div>
         </div>
+        <NFTSection isLoading={isLoading} NFTs={NFTs} />
       </div>
-      <NFTSection isLoading={isLoading} NFTs={NFTs} />
     </div>
   );
 };
