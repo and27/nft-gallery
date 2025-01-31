@@ -13,6 +13,10 @@ export const navItems: NavType[] = [
     link: "/surf",
   },
   {
+    name: "Profile",
+    link: "/profile",
+  },
+  {
     name: "About",
     link: "#about",
   },

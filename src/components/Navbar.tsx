@@ -45,7 +45,7 @@ const Navbar = () => {
             ${isOpen && isMobile ? "top-0 left-0 h-screen" : ""}`}
         >
           <Link
-            href="#"
+            href="/"
             className="text-white font-bold text-2xl absolute top-4 left-4 md:static z-50 md:inset-auto"
           >
             NFT
