@@ -3,7 +3,7 @@ import myNFTAbi from "./myNFTAbi.json";
 const abi = myNFTAbi.abi;
 
 // Deployed contract address
-const contractAddress = "0x59030fEffbcC7813A796f2724bB0dD616647214E";
+const contractAddress = "0x7D9B1a8d2D53A3d76325DC7d40CA7D057c2A140F";
 const infuraKey = process.env.REACT_APP_INFURA_KEY;
 
 let web3: Web3;

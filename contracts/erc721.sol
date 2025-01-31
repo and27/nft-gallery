@@ -17,11 +17,9 @@ contract ArtCollectibles is ERC721URIStorage, Ownable {
 
     function mintNFT(
         address recipient,
-        uint256 tokenId,
         string memory tokenURI
     ) public returns (uint256) {
         require(!_usedTokenURIs[tokenURI], "Token URI already used");
-        require(bytes(uintToString(tokenId)).length > 0, "Invalid token ID");
 
         uint256 newTokenId = tokenCounter;
         _safeMint(recipient, newTokenId);
