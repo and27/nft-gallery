@@ -11,3 +11,12 @@ module.exports = {
     },
   },
 };
+
+task("deploy", "Compile and deploy contract").setAction(
+  async (taskArgs, hre) => {
+    console.log("🔨 Compiling before deployment...");
+    await hre.run("compile");
+    console.log("🚀 Deploying contract...");
+    await hre.run("run", { script: "./scripts/deploy.js" });
+  }
+);

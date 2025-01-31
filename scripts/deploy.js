@@ -1,12 +1,12 @@
 const hre = require("hardhat");
 
 async function main() {
-  const [deployer] = await hre.ethers.getSigners(); // Usa la cuenta del deployer como propietario inicial
+  const [deployer] = await hre.ethers.getSigners();
 
   console.log("Deploying contract with the account:", deployer.address);
 
-  const MyNFT = await hre.ethers.getContractFactory("MyNFT");
-  const myNFT = await MyNFT.deploy(deployer.address); // Pasa la dirección del propietario inicial
+  const MyNFT = await hre.ethers.getContractFactory("ArtCollectibles");
+  const myNFT = await MyNFT.deploy(deployer.address);
 
   await myNFT.deployed();
 
