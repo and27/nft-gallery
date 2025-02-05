@@ -1,13 +1,30 @@
+import web3, { contractAddress, getAccount } from "./web3";
+import { OpenSeaSDK, Chain } from "opensea-js";
+import { ethers } from "ethers";
+
 require("dotenv").config();
 
 const KEY = process.env.NEXT_PUBLIC_OPEN_SEA_KEY || "";
-console.log(KEY);
 const mode = "testnet"; // testnet or mainnet
-const network = mode === "testnet" ? "sepolia" : "ethereum";
+const network = mode === "testnet" ? Chain.Sepolia : Chain.Mainnet;
 const BASE_URL =
   mode === "testnet"
     ? "https://testnets-api.opensea.io/api/v2"
     : "https://api.opensea.io/api/v2";
+
+const getOpenSeaSDK = async () => {
+  if (!window.ethereum) {
+    throw new Error("Metamask no está instalado.");
+  }
+
+  const provider = new ethers.providers.Web3Provider(window.ethereum);
+  await provider.send("eth_requestAccounts", []);
+
+  return new OpenSeaSDK(provider as any, {
+    chain: network,
+    // apiKey: KEY, //not required when testnet
+  });
+};
 
 const options = {
   method: "GET",
@@ -18,7 +35,6 @@ const options = {
 };
 
 const fetchData = async (endpoint: string) => {
-  console.log(`${BASE_URL}/${endpoint}`);
   try {
     const res = await fetch(`${BASE_URL}/${endpoint}`, options);
     if (!res.ok) throw new Error(`Error en la API: ${res.statusText}`);
@@ -45,4 +61,29 @@ const getCollectionBySlug = (slug: string) => {
   return res;
 };
 
-export { getNFTsByCollection, getNFTsfromAccount, getCollectionBySlug };
+const listOnOpenSea = async (tokenId: number, price: number) => {
+  try {
+    const account = await getAccount();
+    const opensea = await getOpenSeaSDK();
+
+    await opensea.createListing({
+      asset: {
+        tokenId: tokenId.toString(),
+        tokenAddress: contractAddress,
+      },
+      accountAddress: ethers.utils.getAddress(account),
+      startAmount: price, // in ETH
+    });
+
+    console.log("✅ NFT listado en OpenSea!");
+  } catch (error) {
+    console.error("Error listando NFT en OpenSea:", error);
+  }
+};
+
+export {
+  getNFTsByCollection,
+  getNFTsfromAccount,
+  getCollectionBySlug,
+  listOnOpenSea,
+};
