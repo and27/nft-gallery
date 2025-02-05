@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { listNFTForSale } from "@/lib/contractMethods";
 import { listOnOpenSea } from "@/lib/opensea";
+import { toast } from "react-toastify";
 
 interface SellModalProps {
   nft: {
@@ -37,10 +38,12 @@ const SellModal: React.FC<SellModalProps> = ({ nft, setShowModal }) => {
       const res = await listOnOpenSea(0, parseInt(price));
       if (res === "success") {
         setShowModal(false);
+        toast.success("NFT listed on OpenSea!");
       }
     } catch (error) {
       console.error("Error listing on OpenSea:", error);
       setShowModal(false);
+      toast.error("Failed to list NFT on OpenSea");
     }
   };
 

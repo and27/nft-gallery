@@ -3,6 +3,8 @@ import NFTCard from "@/components/NFTCard";
 import SellModal from "@/components/SellModal";
 import Spinner from "@/components/Spinner";
 import { useState } from "react";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 interface NFTSectionProps {
   isLoading: boolean;
@@ -38,6 +40,7 @@ const NFTSection: React.FC<NFTSectionProps> = ({ isLoading, NFTs }) => {
         </div>
       )}
       {showModal && <SellModal nft={selectedNFT} setShowModal={setShowModal} />}
+      <ToastContainer position="top-right" autoClose={5000} />
     </section>
   );
 };
