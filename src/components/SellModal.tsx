@@ -34,10 +34,13 @@ const SellModal: React.FC<SellModalProps> = ({ nft, setShowModal }) => {
 
   const handleSellNFT = async () => {
     try {
-      await listOnOpenSea(0, parseInt(price));
-      alert("✅ NFT successfully listed on OpenSea!");
+      const res = await listOnOpenSea(0, parseInt(price));
+      if (res === "success") {
+        setShowModal(false);
+      }
     } catch (error) {
       console.error("Error listing on OpenSea:", error);
+      setShowModal(false);
     }
   };
 
@@ -45,16 +48,19 @@ const SellModal: React.FC<SellModalProps> = ({ nft, setShowModal }) => {
     <div className="fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 flex items-center justify-center">
       <div className="bg-white p-8 rounded-lg">
         <h2 className="text-2xl font-bold mb-4">Sell {nft.name}</h2>
-        <input
-          type="number"
-          placeholder="Price"
-          value={price}
-          onChange={(e) => setPrice(e.target.value)}
-          className="w-full px-4 py-2 mb-4 border border-gray-300 rounded-lg"
-        />
+        <label className="block text-sm font-semibold mb-2 text-neutral-700">
+          Price
+          <input
+            type="number"
+            placeholder="0"
+            value={price}
+            onChange={(e) => setPrice(e.target.value)}
+            className="w-full px-4 py-2 mb-4 mt-2 border border-gray-300 rounded-lg"
+          />
+        </label>
         <div className="flex gap-4">
           <button
-            className="bg-red-600 text-white px-4 py-2 rounded-lg"
+            className="bg-neutral-100 border border-neutral-400 text-neutral-600 px-4 py-2 rounded-lg"
             onClick={() => setShowModal(false)}
           >
             Cancel

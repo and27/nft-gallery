@@ -74,10 +74,9 @@ const listOnOpenSea = async (tokenId: number, price: number) => {
       accountAddress: ethers.utils.getAddress(account),
       startAmount: price, // in ETH
     });
-
-    console.log("✅ NFT listado en OpenSea!");
+    return "sucess";
   } catch (error) {
-    console.error("Error listando NFT en OpenSea:", error);
+    throw new Error("Falló la transacción");
   }
 };
 

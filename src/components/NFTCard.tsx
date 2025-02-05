@@ -17,10 +17,10 @@ const NFTCard: React.FC<NFTCardProps> = ({ nft, onSell }) => {
             className="object-cover w-full h-full"
           />
         </div>
-        <div className="text-center absolute top-0 w-full h-full bg-gradient-to-t from-transparent to-black ">
-          <p className="text-white pt-4">{nft.name}</p>
+        <div className="text-center flex flex-col items-start justify-between p-4 absolute top-0 w-full h-full bg-gradient-to-t from-transparent to-black">
+          <p className="text-white">{nft.name}</p>
           <button
-            className="bg-indigo-600 text-white px-4 py-2 rounded-lg"
+            className="bg-neutral-800 text-neutral-200 px-6 py-2 rounded-lg"
             onClick={() => onSell()}
           >
             Sell
