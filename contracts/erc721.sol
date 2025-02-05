@@ -6,8 +6,12 @@ import "@openzeppelin/contracts/access/Ownable.sol";
 
 contract ArtCollectibles is ERC721URIStorage, Ownable {
     uint256 public tokenCounter;
-    event NFTMinted(address recipient, uint256 tokenId, string tokenURI);
+
+    mapping(uint256 => uint256) public nftPrices;
     mapping(string => bool) private _usedTokenURIs;
+
+    event NFTMinted(address recipient, uint256 tokenId, string tokenURI);
+    event NFTListedForSale(uint256 tokenId, uint256 price, address seller);
 
     constructor(
         address initialOwner
@@ -48,5 +52,17 @@ contract ArtCollectibles is ERC721URIStorage, Ownable {
             value /= 10;
         }
         return string(buffer);
+    }
+
+    function listNFT(uint256 tokenId, uint256 price) public {
+        require(ownerOf(tokenId) == msg.sender, "You don't own this NFT");
+        require(price > 0, "Price must be greater than 0");
+
+        nftPrices[tokenId] = price;
+        emit NFTListedForSale(tokenId, price, msg.sender);
+    }
+
+    function getNFTPrice(uint256 tokenId) public view returns (uint256) {
+        return nftPrices[tokenId];
     }
 }

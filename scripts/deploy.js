@@ -11,6 +11,7 @@ async function main() {
   await myNFT.deployed();
 
   console.log("MyNFT deployed to:", myNFT.address);
+  console.log("🚀 Copy this address and update frontend (web3.ts)!");
 }
 
 main().catch((error) => {
