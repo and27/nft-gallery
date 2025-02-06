@@ -29,7 +29,7 @@ const Account: React.FC = () => {
 
       const res = await fetch(url, options);
       const collections = await res.json();
-      setCollections((prev) => [...prev, ...collections.collections]);
+      setCollections((prev) => [...prev, ...collections?.collections]);
       setNextPage(collections.next);
     } catch (error) {
       console.error("Error fetching Collections:", error);

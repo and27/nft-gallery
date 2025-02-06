@@ -7,14 +7,10 @@ import { navItems } from "../data/navigation";
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [activeLink, setActiveLink] = useState("");
-  const [isMobile, setIsMobile] = useState<boolean | null>(null);
+  const [isMobile, setIsMobile] = useState<boolean>(window.innerWidth < 768);
 
   useEffect(() => {
-    const handleResize = () => {
-      setIsMobile(window.innerWidth < 768);
-    };
-
-    handleResize();
+    const handleResize = () => setIsMobile(window.innerWidth < 768);
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
@@ -34,8 +30,6 @@ const Navbar = () => {
       document.body.classList.remove("no-scroll");
     };
   }, [isOpen, isMobile]);
-
-  if (isMobile === null) return null;
 
   return (
     <>
