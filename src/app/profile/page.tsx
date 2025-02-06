@@ -35,7 +35,7 @@ const Account: React.FC = () => {
       <div className="max-w-6xl mx-auto bg-neutral-100 p-16 mt-9 ">
         <div className="flex items-center w-full  mb-8 justify-between">
           <h1 className={`${bebasNeue.className} text-4xl font-bold`}>
-            Welcome
+            My profile
           </h1>
           <button
             className="bg-indigo-600 text-white px-4 py-2 rounded-lg"

@@ -20,7 +20,7 @@ const NFTSection: React.FC<NFTSectionProps> = ({ isLoading, NFTs }) => {
   };
 
   return (
-    <section>
+    <section className="py-10">
       <h2
         className={`${bebasNeue.className} text-neutral-500 font-semibold text-3xl mb-4`}
       >

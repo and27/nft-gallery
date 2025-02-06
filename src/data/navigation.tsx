@@ -5,10 +5,6 @@ type NavType = {
 
 export const navItems: NavType[] = [
   {
-    name: "Home",
-    link: "/",
-  },
-  {
     name: "NFTs Gallery",
     link: "/surf",
   },
