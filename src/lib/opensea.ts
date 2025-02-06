@@ -5,9 +5,10 @@ import { ethers } from "ethers";
 require("dotenv").config();
 
 const KEY = process.env.NEXT_PUBLIC_OPEN_SEA_KEY || "";
+console.log(KEY);
 const mode = "testnet"; // testnet or mainnet
 const network = mode === "testnet" ? Chain.Sepolia : Chain.Mainnet;
-const BASE_URL =
+export const BASE_URL =
   mode === "testnet"
     ? "https://testnets-api.opensea.io/api/v2"
     : "https://api.opensea.io/api/v2";
@@ -51,13 +52,13 @@ const getNFTsfromAccount = async (address: string) => {
   return res;
 };
 
-const getNFTsByCollection = (slug: string) => {
-  const res = fetchData(`assets?collection=${slug}`);
+const getNFTsByCollection = async (slug: string) => {
+  const res = fetchData(`collections/${slug}/nfts?chain=sepolia`);
   return res;
 };
 
 const getCollectionBySlug = (slug: string) => {
-  const res = fetchData(`collection/${slug}`);
+  const res = fetchData(`collections/${slug}?chain=sepolia`);
   return res;
 };
 

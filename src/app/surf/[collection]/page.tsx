@@ -13,20 +13,20 @@ export default async function Page({
   return (
     <>
       <h1 className={`${bebasNeue.className} text-3xl font-bold mb-4`}>
-        Collection: {collectionData.name}
+        Collection: {collectionData?.name}
       </h1>
       <div className="flex gap-10 items-center mb-10">
         <Image
-          src={collectionData.image_url || "/lyonHero.webp"}
-          alt={collectionData.name}
+          src={collectionData?.image_url || "/lyonHero.webp"}
+          alt={collectionData?.name}
           width={100}
           height={100}
           className="rounded-full aspect-square"
         />
         <div className="flex flex-col gap-1">
-          <p className="font-semibold">{collectionData.name}</p>
-          <p>{collectionData.description}</p>
-          <p>Owner: {collectionData.owner}</p>
+          <p className="font-semibold">{collectionData?.name}</p>
+          <p>{collectionData?.description}</p>
+          <p>Owner: {collectionData?.owner}</p>
         </div>
       </div>
       <h2

@@ -2,6 +2,7 @@
 
 import { bebasNeue } from "@/components/Hero";
 import ImageWithContent from "@/components/ImageWithContent";
+import { BASE_URL } from "@/lib/opensea";
 import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import { useInView } from "react-intersection-observer";
@@ -23,8 +24,8 @@ const Account: React.FC = () => {
       };
 
       const url = nextPage
-        ? `https://api.opensea.io/api/v2/collections?chain=ethereum&limit=8&next=${nextPage}`
-        : "https://api.opensea.io/api/v2/collections?chain=ethereum&limit=8";
+        ? `${BASE_URL}/collections?chain=sepolia&limit=8&next=${nextPage}`
+        : `${BASE_URL}/collections?chain=sepolia&limit=8`;
 
       const res = await fetch(url, options);
       const collections = await res.json();
@@ -71,9 +72,9 @@ const Account: React.FC = () => {
               <div key={collection.id} className="flex flex-col gap-2 relative">
                 <ImageWithContent
                   image={image}
-                  onClick={() => navigateToCollection(collection.collection)}
+                  onClick={() => navigateToCollection(collection?.collection)}
                 >
-                  <p className="text-white mt-4">{collection.name}</p>
+                  <p className="text-white mt-4">{collection?.name}</p>
                 </ImageWithContent>
               </div>
             );
