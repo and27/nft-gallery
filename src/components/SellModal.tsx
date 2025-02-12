@@ -35,7 +35,7 @@ const SellModal: React.FC<SellModalProps> = ({ nft, setShowModal }) => {
 
   const handleSellNFT = async () => {
     try {
-      const res = await listOnOpenSea(0, parseInt(price));
+      const res = await listOnOpenSea(0, price);
       if (res === "success") {
         setShowModal(false);
         toast.success("NFT listed on OpenSea!");
