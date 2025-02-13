@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { navItems } from "../data/navigation";
+import Auth from "./Auth";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -45,7 +46,7 @@ const Navbar = () => {
             NFT
           </Link>
           <ul
-            className={`flex flex-col md:flex-row py-5 gap-8 text-white ${
+            className={`flex flex-col items-center md:flex-row py-5 gap-8 text-white ${
               isMobile && !isOpen ? "hidden" : ""
             } `}
           >
@@ -59,6 +60,7 @@ const Navbar = () => {
                 <Link href={item.link}>{item.name}</Link>
               </li>
             ))}
+            <Auth />
           </ul>
         </nav>
         <button

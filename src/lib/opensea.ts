@@ -1,5 +1,5 @@
+import { ethers } from "ethers";
 import web3, { contract, contractAddress, getAccount } from "./web3";
-import { BrowserProvider } from "ethers";
 
 require("dotenv").config();
 
@@ -86,13 +86,9 @@ const getCollectionBySlug = (slug: string) => {
 
 const signOrder = async (orderData: any) => {
   try {
-    const provider = new BrowserProvider(window.ethereum);
+    const provider = new ethers.providers.Web3Provider(window.ethereum as any);
     const signer = provider.getSigner();
-    const signature = (await signer).signTypedData(domain, types, orderData);
-    console.log(
-      "📌 Order Data enviado a OpenSea:",
-      JSON.stringify(orderData, null, 2)
-    );
+    const signature = (await signer)._signTypedData(domain, types, orderData);
 
     return signature;
   } catch (error) {

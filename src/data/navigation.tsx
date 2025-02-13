@@ -12,8 +12,4 @@ export const navItems: NavType[] = [
     name: "Profile",
     link: "/profile",
   },
-  {
-    name: "About",
-    link: "#about",
-  },
 ];
